@@ -1,5 +1,6 @@
 import json
-import logging
+import logging.config
+import pathlib
 
 
 class JsonMessageFormatter(logging.Formatter):
@@ -20,3 +21,8 @@ class JsonMessageFormatter(logging.Formatter):
                 s = s + "\n"
             message_dict['stack_info'] = self.formatStack(record.stack_info)
         return s + json.dumps(message_dict)
+
+
+def config_log(path=pathlib.Path(__file__).parent / 'log_config.json'):
+    with open(path) as f:
+        logging.config.dictConfig(json.load(f))

@@ -1,12 +1,11 @@
-import json
-import logging.config
-import pathlib
+import logging
 
-from module_dir import random_module
+import configs
+from random_package import random_module
 from utils import random_util
 
-with open(pathlib.Path(__file__).parent / 'configs' / 'log_config.json') as f:
-    logging.config.dictConfig(json.load(f))
+# In case `import configs` is cleaned by PyCharm's Reformat Code
+configs.config_log()
 logger = logging.getLogger(__name__)
 
 random_util.do_something()
